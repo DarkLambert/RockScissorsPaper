@@ -7,9 +7,11 @@ def user_interfaca(options):
    """
     for index, weapon in enumerate(options):
         print(f'{index} = {weapon}')
-
-    user_input = int(input('what do you choose? '))
-    return user_input
+    try:
+        user_input = int(input('what do you choose? '))
+        return user_input
+    except ValueError:
+        print(f'Please, use numbers!'), main()
 
 
 def computer_choice(content):
@@ -38,11 +40,15 @@ def play():
     coputer_result = computer_choice(option_list)
 
     # показываем выбор игрока
-    print(f'plaeys choose: {option_list[user_result]}')
-    print(f'computer choose: {option_list[coputer_result]}')
+    try:
+        print(f'plaeys choose: {option_list[user_result]}')
+        print(f'computer choose: {option_list[coputer_result]}')
 
-    result = check_result(option_list, user_result, coputer_result)
-    print(f'\n{result}')
+        result = check_result(option_list, user_result, coputer_result)
+        print(f'\n{result}')
+    except (IndexError, TypeError):
+        print(f'Please, try again you are out of line')
+        play()
 
 
 def main():
